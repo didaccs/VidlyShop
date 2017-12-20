@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Vidly.Models.Movie>
+<br />
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+    @Html.ActionLink("Create New", "New", "", htmlAttributes: new { @class = "btn btn-primary" })
+
 
 <h3>Movies</h3>
 <table class="table table-bordered table-hover">
@@ -15,7 +15,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>@Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToString(), "Details", new { id = item.Id })</td>
+        <td>@Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToString(), "Edit", new { id = item.Id })</td>
         <td>@Html.DisplayFor(modelItem => item.Genre.Name)</td>
         @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

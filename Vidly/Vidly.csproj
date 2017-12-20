@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201712201149261_MovieNameRequired.Designer.cs">
       <DependentUpon>201712201149261_MovieNameRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712201636380_AddForeignIdGenreInMovies.cs" />
+    <Compile Include="Migrations\201712201636380_AddForeignIdGenreInMovies.Designer.cs">
+      <DependentUpon>201712201636380_AddForeignIdGenreInMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -251,6 +255,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +320,8 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
+    <Content Include="Views\Customer\CustomerForm.cshtml" />
+    <Content Include="Views\Movie\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712201149261_MovieNameRequired.resx">
       <DependentUpon>201712201149261_MovieNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201636380_AddForeignIdGenreInMovies.resx">
+      <DependentUpon>201712201636380_AddForeignIdGenreInMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

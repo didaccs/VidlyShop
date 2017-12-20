@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
@@ -9,10 +10,13 @@ namespace Vidly.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        [DisplayName("Subscribed to Newsletter?")]
         public bool IsSubscribedToNewsletter { get; set; }
         public MemberShipType MemberShipType { get; set; }
+        [DisplayName("Membership Type")]
         public byte MemberShipTypeId { get; set; }
         [DisplayFormat(DataFormatString = "{0:d}")]
+        [DisplayName("Date of Birth")]
         public DateTime? BirthDate { get; set; }
     }
 }
