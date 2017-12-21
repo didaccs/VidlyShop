@@ -20,6 +20,7 @@
         @Html.LabelFor(m => m.Customer.MemberShipTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Customer.MemberShipTypeId, new SelectList(Model.MemberShipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Customer.MemberShipTypeId, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -54,3 +55,8 @@
 <div>
     @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-primary" })
 </div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -25,6 +25,7 @@ namespace Vidly.Models
 
         [DisplayFormat(DataFormatString = "{0:d}")]
         [Display(Name = "Release Date")]
+        [Required]
         public DateTime ReleaseDate { get; set; }
 
         [Display(Name = "Added Date")]
@@ -32,6 +33,8 @@ namespace Vidly.Models
         public DateTime DateAdded { get; set; }
 
         [Display(Name = "Number in Stock")]
+        [Required]
+        [Range(1, 20, ErrorMessage = "The number of movies in stock must be between 1 and 20.")]
         public int NumberInStock { get; set; }
     }
 }

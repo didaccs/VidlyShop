@@ -44,11 +44,12 @@ namespace Vidly.Controllers
             }
         }
 
-        public ActionResult New()
+        public ActionResult New(Movie movie)
         {
             var viewModel = new MovieViewModel
             {
-                Genres = _context.Genres.ToList()
+                Genres = _context.Genres.ToList(),
+                Movie = movie
             };
 
             return View("Edit", viewModel);
@@ -75,8 +76,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieViewModel
+                {
+                    Genres = _context.Genres.ToList(),
+                    Movie = movie
+                };
+
+                return View("Edit", viewModel);
+            }
+
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;

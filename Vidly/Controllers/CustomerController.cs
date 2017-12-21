@@ -24,7 +24,7 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c=> c.MemberShipType).ToList();
+            var customers = _context.Customers.Include(c => c.MemberShipType).ToList();
             return View(customers);
         }
 
@@ -43,10 +43,11 @@ namespace Vidly.Controllers
             }
         }
 
-        public ActionResult New()
+        public ActionResult New(Customer customer)
         {
             var viewModel = new CustomerViewModel
             {
+                Customer = customer,
                 MemberShipTypes = _context.MemberShipTypes.ToList()
             };
 
@@ -54,15 +55,27 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerViewModel
+                {
+                    Customer = customer,
+                    MemberShipTypes = _context.MemberShipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
             }
             else
             {
-                var customerUpdate = _context.Customers.Single(c=> c.Id == customer.Id);
+                var customerUpdate = _context.Customers.Single(c => c.Id == customer.Id);
 
                 customerUpdate.Name = customer.Name;
                 customerUpdate.BirthDate = customer.BirthDate;
@@ -70,9 +83,9 @@ namespace Vidly.Controllers
                 customerUpdate.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
 
-            
+
             _context.SaveChanges();
-            
+
             return RedirectToAction("Index", "Customer");
         }
 
@@ -91,7 +104,7 @@ namespace Vidly.Controllers
                     Customer = customer,
                     MemberShipTypes = _context.MemberShipTypes.ToList()
                 };
-                
+
                 return View("CustomerForm", viewModel);
             }
         }
